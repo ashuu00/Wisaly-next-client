@@ -4,6 +4,7 @@ import React from 'react'
 import Carousel from 'react-multi-carousel'
 import CardDisplay from '../Cards/ProductCard'
 import {RecommendResponsive} from '../../Lists/responsive'
+import Link from 'next/link'
 
 export default function Recommend() {
     return (
@@ -18,7 +19,9 @@ export default function Recommend() {
                     "Have this lorwem ipsuim generator"
                     </Text>
                     <Center>
+                    <Link href="/shop/ashu">
                         <Button fontSize={{base:"sm",md:"md",lg:"2xl"}} colorScheme="blue" _hover={{boxShadow:"2xl",transform:"scale(1.05)"}}>Shop Now</Button>
+                    </Link>
                     </Center>
                 </Box>
                 <Box  w="70%">

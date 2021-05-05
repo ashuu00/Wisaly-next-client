@@ -40,7 +40,7 @@ export default function index() {
             </Box>
             <Carousel responsive={responsive} itemClass={styles.my_item} ssr >
                 {Array(6).fill(' ').map((_, idx)=>(
-                  <Link href='/blogs/as' key={idx}>
+                  <Link href='/blogs/ashu' key={idx}>
                     <Flex  key={idx} w="100%" backgroundImage="url(https://picsum.photos/id/211/600/600)"
                       backgroundPosition="center"
                       backgroundSize="cover"

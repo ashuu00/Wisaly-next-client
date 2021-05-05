@@ -2,6 +2,7 @@ import React from 'react'
 import {Box, Heading, Spacer,Button,Flex, Divider} from '@chakra-ui/react'
 import Card from '../Cards/ProductCard'
 import Carousel from 'react-multi-carousel'
+import Link from 'next/link'
 //import { Divider } from '@material-ui/core'
 import FeaturedResponsive from '../../Lists/responsive'
 export default function FeaturedBox({title}) {
@@ -14,7 +15,9 @@ export default function FeaturedBox({title}) {
             <Flex align="center" flexDir="row">
                 <Heading fontSize={{base:"xl",md:"2xl",lg:"3xl"}} m={4}>{title}</Heading>
                 <Spacer/>
-                <Box as={Button} color="whitesmoke" bg="cyan.400" boxShadow="md" _hover={{bg:"cyan.600", color:"white"}}>See All Items</Box>
+                <Link href="/shop/ashu">
+                    <Box as={Button} color="whitesmoke" bg="cyan.400" boxShadow="md" _hover={{bg:"cyan.600", color:"white"}}>See All Items</Box>
+                </Link>
             </Flex>
             <Divider/> 
             <Carousel ssr responsive={FeaturedResponsive} showDots>

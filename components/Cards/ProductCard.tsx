@@ -1,5 +1,6 @@
 import { Box, Image, Flex, Badge, Text, Button, useBreakpointValue, Spacer } from "@chakra-ui/react";
-
+import React from "react";
+import Link from "next/link";
 
 
 export default function Example() {
@@ -8,9 +9,11 @@ export default function Example() {
 
   
   return (
-    
+    <Link href='/shop/ashu/tosh'>
     <Box p={{base:"1",md:"3",lg:"5"}} 
     mx={4} my={5} maxW="320px" 
+    _hover={{transform:'scale(1.02)',transition:'all 0.5s ease', 
+    cursor:'pointer', boxShadow:'4px 4px 7px 1px rgba(0,0,0,0.25)'}}
     borderWidth="1px" bg="gray.50" borderRadius="md">
       <Image borderRadius="md" src="https://bit.ly/2k1H1t6" />
       <Flex pt={["1","2","3"]} pl={["1","2","3"]} alignItems="baseline">
@@ -44,6 +47,6 @@ export default function Example() {
         </Button>
       </Flex>
     </Box>
-    
+    </Link>
   );
 }
