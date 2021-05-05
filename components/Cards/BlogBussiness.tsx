@@ -3,7 +3,7 @@ import {Text, Box, Flex, Image, useBreakpointValue} from "@chakra-ui/react"
 
 export default function BlogCards() {
     return (
-        <Box w="200px" borderWidth="1px" bg="gray.100" my={5} mx={[2,2,3,3]} >
+        <Box w="300px" borderWidth="1px" bg="gray.100" my={5} mx={[2,2,3,3]} >
             <Image borderRadius="md" src="https://bit.ly/2k1H1t6" />
             <Box px={5} mt={2}>
                     <Text
@@ -16,8 +16,8 @@ export default function BlogCards() {
                     >
                     12 january, 2021
                     </Text>
-                <Text mt={0.5} fontSize={{base:"2xl",md:"3xl"}} fontWeight="bold" lineHeight="short">
-                    Title for the Image
+                <Text mt={0.5} fontSize={{base:"xl",md:"2xl"}} fontWeight="bold" lineHeight="short">
+                    Title for the blog wirtten by me
                 </Text>
                 
             </Box>
