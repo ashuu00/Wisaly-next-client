@@ -1,0 +1,35 @@
+.my_item{
+    padding:10px;
+    
+}
+
+.blogContent{
+
+    text-align:left;
+
+    h1, h2, h3, h4, h5, h6{
+        margin:1.75rem 0;
+        font-weight: bold;
+    }
+    h2{
+        font-size:2rem;
+        line-height:1;
+    }
+    
+
+    p{
+        margin:1.5rem 0; 
+        font-size:1.25rem;
+        color:#4A5568;
+        font-weight: medium;
+        line-height:1.4;
+    }
+
+    img{
+        margin:1.75rem 0;
+        width: 100%;
+        height: auto;
+        border-radius:2px;
+    }
+    
+}

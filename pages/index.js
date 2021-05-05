@@ -19,7 +19,7 @@ export default function Home() {
         <title>Wisaly App</title>
         <meta name="description" content="App for marketing your products using blogs" />
       </Head>
-        <Header/>
+       
         {/**Container for storing all inoformation */}
         <Box   h="80vh" display="flex" alignItems="center" px="2rem" bgGradient="linear(to-b, teal.50, white)">
           <Box w="50%" pl="5%">

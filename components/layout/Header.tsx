@@ -1,21 +1,22 @@
 import React from 'react'
-import {Box, HStack, Link, Text, Button, Icon, Img} from '@chakra-ui/react';
+import {Box, HStack, Link as ChakraLink, Text, Button, Icon, Img} from '@chakra-ui/react';
+import Link from 'next/link';
 import {FiMoreVertical} from 'react-icons/fi'
 const labels=[{
     label:'About',
-    link:`${process.env.NEXT_PUBLIC_DEV_URL}/home`
+    link:`/`
 },{
     label:'Explore',
-    link:`${process.env.NEXT_PUBLIC_DEV_URL}/explore`
+    link:`/explore`
 },{
     label:'Blogs',
-    link:`${process.env.NEXT_PUBLIC_DEV_URL}/blogs`
+    link:`/blogs`
 },{
     label:'Services',
-    link:`${process.env.NEXT_PUBLIC_DEV_URL}/services`
+    link:`/services`
 },{
     label:'Shop',
-    link:`${process.env.NEXT_PUBLIC_DEV_URL}/services`
+    link:`/shop`
 }]
 export default function Header() {
 
@@ -24,10 +25,12 @@ export default function Header() {
     return (
         <Box display="flex" h="80px"  w="100%"  px="2rem" borderBottom="2px solid" borderBottomColor="teal.50">
             <HStack spacing="2.5rem" h="80px"  align="center">
-                <Img src="homepage/WisalyLatestLogo.jpg" h="80%" alt="Wisaly Logo"/>
+                <Img src="/homepage/WisalyLatestLogo.jpg" h="80%" alt="Wisaly Logo"/>
                 {labels.map((val)=>(
-                    <Link _hover={{color:'teal.400'}} color="pink.500" key={val.label}>
+                    <Link key={val.label} href={val.link}>
+                    <ChakraLink  _hover={{color:'teal.400',cursor:'pointer'}} color="pink.500" >
                         <Text fontSize="xl" fontWeight="medium"> {val.label}</Text>
+                    </ChakraLink>
                     </Link>
                 ))}
             </HStack>

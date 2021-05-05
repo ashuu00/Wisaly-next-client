@@ -1,3 +1,33 @@
 .home-container{
   height:calc(100vh-80px);
 }
+
+.back{
+  backface-visibility: hidden;
+  z-index: 0;
+  transform:rotateY(180deg);
+  background-color: rgb(246, 56, 88);
+  color:rgb(245, 209, 215)
+}
+
+.front{
+  backface-visibility: hidden;
+  transform:rotateY(0deg);
+}
+
+.main{
+  transform-style: preserve-3d;
+}
+
+
+
+.leftCard{
+  &:hover{
+    background-color:#B83280;
+    color:rgb(250, 238, 253);
+    transform:scale(1.03);
+    .sidebarCircle{
+    border-color: rgb(250, 238, 253);}
+   // border-color: B83280;}
+  }
+}
