@@ -41,7 +41,7 @@ export default function index() {
             <Carousel responsive={responsive} itemClass={styles.my_item} ssr >
                 {Array(6).fill(' ').map((_, idx)=>(
                   <Link href='/blogs/as' key={idx}>
-                    <Flex  key={idx} w="100%" backgroundImage="url(https://picsum.photos/id/211/800/800)"
+                    <Flex  key={idx} w="100%" backgroundImage="url(https://picsum.photos/id/211/600/600)"
                       backgroundPosition="center"
                       backgroundSize="cover"
                       _hover={{cursor:'pointer',transform:'scale(1.02)', transition:'all 0.5s ease', 

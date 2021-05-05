@@ -3,6 +3,7 @@ import { Box, Flex, Heading, Input, Text,InputGroup, InputRightElement, Button,
     NumberDecrementStepper, NumberInputStepper} from '@chakra-ui/react'
 import React from 'react'
 import Ratings from 'react-ratings-declarative'
+import 'react-multi-carousel/lib/styles.css';
 export default function ProductHeading({title, ...props}) {
 return (
     <Box {...props} p={5}>

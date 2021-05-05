@@ -1,7 +1,8 @@
 import React from 'react'
-import {Box, HStack, Link as ChakraLink, Text, Button, Icon, Img} from '@chakra-ui/react';
+import {Box, HStack, Link as ChakraLink, Text, Button, Icon, Img, Circle} from '@chakra-ui/react';
 import Link from 'next/link';
-import {FiMoreVertical} from 'react-icons/fi'
+import {FiMoreVertical, FiShoppingCart} from 'react-icons/fi'
+import {FaShoppingCart} from 'react-icons/fa'
 const labels=[{
     label:'About',
     link:`/`
@@ -35,6 +36,9 @@ export default function Header() {
                 ))}
             </HStack>
             <HStack spacing="2.5rem" h="80px"  fontSize="xl" w="100%" marginLeft="20%" align="center" justify="flex-end">
+                    <Link href='/checkout'>
+                        <Icon as={FaShoppingCart} w={9} h={9}  borderRadius="10%" p={1} bg="gray.50" _hover={{transform:'scale(1.02)' ,bg:'gray.100',cursor:'pointer'}} color="pink.500"/>
+                    </Link>
                     <Icon as={FiMoreVertical} w={6} h={6} color="pink.500"/>
                     <Button colorScheme="gray" color="pink.500" px="1.5rem">Login</Button>
                     <Button colorScheme="pink">Sign Up</Button>

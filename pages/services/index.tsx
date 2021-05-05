@@ -6,19 +6,19 @@ import FeaturedBox from '../../components/DisplayBox/BusinessFeature'
 import Recommend from '../../components/DisplayBox/RecommendCard'
 export default function index() {
     useEffect(() =>{
-        
+
     })
     return (
         <Box w="100%" p="2rem" display="flex" bg="gray.50" position="relative">
-            <Box w="15%"  h="100vh" bg="gray.100" pt="5%" position="sticky" top={0}>
+            <Box w="17.5%"  h="100vh" bg="gray.100" pt="5%" position="sticky" top={0}>
                 <Sidebar title="Hello" route="service" icon="hr"/>
                 <Sidebar title="Hello" route="service" icon="hr"/>
                 <Sidebar title="Hello" route="service" icon="hr"/>
                 <Sidebar title="Hello" route="service" icon="hr"/>
             </Box>
-            <Box w="30%"  h="100vh" p="1rem"  >
+            <Box w="32.5%"  h="100vh" p="1rem"  >
                 <Img w="100%" src="https://picsum.photos/id/237/800/1000"  borderRadius="20px" alt="Company Title Image"/>
-                <Text fontSize="3xl" lineHeight={1} fontWeight="bold" my="1.5rem">Name of the Company here</Text>
+                <Text fontSize="3xl" lineHeight={1}  fontWeight="bold" my="1.5rem">Name of the Company here</Text>
                 <HStack spacing="0" justify="center" fontWeight="bold">
                     <Box borderRadius="5px" w="33%" border="2px solid"
                     bg="gray.100"
@@ -53,7 +53,7 @@ export default function index() {
                 </Box>
                 
             </Box>
-            <Box w="55%">
+            <Box w="50%">
                 <FeaturedBox/>
                 <FeaturedBox/>
             </Box>
