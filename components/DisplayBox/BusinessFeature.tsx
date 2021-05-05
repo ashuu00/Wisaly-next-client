@@ -18,8 +18,8 @@ export default function FeaturedBox({title}) {
                 <Box as={Button} color="whitesmoke" bg="cyan.400" boxShadow="md" _hover={{bg:"cyan.600", color:"white"}}>See All Items</Box>
             </Flex>
             <Divider/> 
-            <Carousel responsive={RecommendResponsive} showDots>
-                {Array(7).fill('').map((_,idx)=>(<BlogBussiness key={idx}/>))}
+            <Carousel responsive={RecommendResponsive} showDots ssr>
+                {Array(4).fill('').map((_,idx)=>(<BlogBussiness key={idx}/>))}
             </Carousel>
         </Box>
     )
