@@ -40,11 +40,12 @@ export default function index() {
             </Box>
             <Carousel responsive={responsive} itemClass={styles.my_item} >
                 {Array(6).fill(' ').map((_, idx)=>(
-                  <Link href='/blogs/as'>
+                  <Link href='/blogs/as' key={idx}>
                     <Flex  key={idx} w="100%" backgroundImage="url(https://picsum.photos/id/211/800/800)"
                       backgroundPosition="center"
                       backgroundSize="cover"
-                      _hover={{cursor:'pointer',transform:'scale(1.02)', transition:'all 0.5s ease', boxShadow:'4px 4px 5px 1px rgba(0,0,0,0.5)'}}
+                      _hover={{cursor:'pointer',transform:'scale(1.02)', transition:'all 0.5s ease', 
+                      boxShadow:'4px 4px 5px 1px rgba(0,0,0,0.5)'}}
                         h="500px" justify="center" alignItems="flex-end" borderRadius="10px" 
                         boxShadow="md" >
                         <Flex width="80%" 
