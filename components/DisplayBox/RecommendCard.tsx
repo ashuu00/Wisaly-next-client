@@ -22,7 +22,7 @@ export default function Recommend() {
                     </Center>
                 </Box>
                 <Box  w="70%">
-                   <Carousel responsive={RecommendResponsive}>
+                   <Carousel ssr responsive={RecommendResponsive}>
                        <CardDisplay/>
                        <CardDisplay/>
                        <CardDisplay/>

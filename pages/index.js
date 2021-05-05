@@ -55,8 +55,8 @@ export default function Home() {
           <Heading as="h2" size="2xl" color="teal.700">Website Screenshots</Heading>
           <Divider width="10%" borderColor="teal.300" mt="0.5rem" mb="3rem" borderWidth="3px"/>
           <SimpleGrid columns={2} spacing={15} mx="5%">
-            {screenshotList.map(val=>(
-                <Box width="80%" textAlign="left" color="teal.700">
+            {screenshotList.map((val,idx)=>(
+                <Box width="80%" textAlign="left" key={idx} color="teal.700">
                   <Img src={val.src}
                   width="100%" h="auto" alt="title" 
                   borderRadius="35px" boxShadow="xl" />

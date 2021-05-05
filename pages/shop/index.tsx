@@ -27,7 +27,7 @@ export default function index() {
     ]
     return (
        <Box>
-               <Carousel responsive={responsive} infinite showDots>
+               <Carousel responsive={responsive} infinite showDots ssr>
                     {Array(5).fill(' ').map((_, idx)=>(
                         <Box w="100%" pt="35%" backgroundImage={`url(${images[idx]})`}
                         backgroundPosition="center"
