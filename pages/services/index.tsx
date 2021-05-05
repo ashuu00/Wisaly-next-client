@@ -1,10 +1,13 @@
 import { Box, Flex, Heading, Divider, HStack, Img, Text, VStack, Button} from '@chakra-ui/react'
-import React from 'react'
+import React,{useEffect} from 'react'
 import Sidebar from '../../components/Cards/Sidebar'
 import FeaturedBox from '../../components/DisplayBox/BusinessFeature'
 
 import Recommend from '../../components/DisplayBox/RecommendCard'
 export default function index() {
+    useEffect(() =>{
+        
+    })
     return (
         <Box w="100%" p="2rem" display="flex" bg="gray.50" position="relative">
             <Box w="15%"  h="100vh" bg="gray.100" pt="5%" position="sticky" top={0}>
@@ -50,10 +53,10 @@ export default function index() {
                 </Box>
                 
             </Box>
-            <VStack w="55%" spacing="3rem">
+            <Box w="55%">
                 <FeaturedBox/>
                 <FeaturedBox/>
-            </VStack>
+            </Box>
 
         </Box>
     )
