@@ -19,12 +19,7 @@ export default function BlogCards() {
                 <Text mt={0.5} fontSize={{base:"2xl",md:"3xl"}} fontWeight="bold" lineHeight="short">
                     Title for the Image
                 </Text>
-                <Text mt={4} noOfLines={3} isTruncated fontSize={{base:"md",md:"lg"}}>
-                Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying
-                 out print, graphic or web designs. The passage is attributed to 
-                  unknown typesetter in the 15th century who is thought to have scrambled
-                   parts of Cicero's De Finibus Bonorum et Malorum for 
-                </Text>
+                
             </Box>
         </Box>
     )
