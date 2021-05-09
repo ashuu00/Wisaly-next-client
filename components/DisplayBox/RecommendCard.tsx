@@ -2,6 +2,7 @@ import { Box,Button,Center,Text, Flex } from '@chakra-ui/react'
 
 import React from 'react'
 import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css';
 import CardDisplay from '../Cards/ProductCard'
 import {RecommendResponsive} from '../../Lists/responsive'
 import Link from 'next/link'

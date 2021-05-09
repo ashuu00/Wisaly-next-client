@@ -27,6 +27,15 @@ class MyDocument extends Document {
 <meta name="msapplication-TileColor" content="#ffffff"/>
 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
 <meta name="theme-color" content="#ffffff"/>
+{/*google analytics tag */}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8965ZF1E7N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8965ZF1E7N');
+</script>
         </Head>
         <body>
           <Main />

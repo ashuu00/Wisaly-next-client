@@ -2,6 +2,7 @@ import React from 'react'
 import {Box, Heading, Spacer,Button,Flex, Divider} from '@chakra-ui/react'
 import Card from '../Cards/ProductCard'
 import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css';
 import Link from 'next/link'
 //import { Divider } from '@material-ui/core'
 import FeaturedResponsive from '../../Lists/responsive'
