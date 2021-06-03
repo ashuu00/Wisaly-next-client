@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Box, HStack, Link as ChakraLink, Text, Button, Icon, Img, Circle } from '@chakra-ui/react';
+import {
+    Box,
+    HStack,
+    Link as ChakraLink,
+    Text,
+    Button,
+    Icon,
+    Img,
+    Circle,
+    useToast
+} from '@chakra-ui/react';
 import Link from 'next/link';
 import { FiMoreVertical, FiShoppingCart } from 'react-icons/fi';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -7,7 +17,10 @@ import axios from 'axios';
 import firebase from 'firebase';
 import StyledLogin from 'react-firebaseui/StyledFirebaseAuth';
 import cookieCutter from 'cookie-cutter';
-
+import { LoginUser, LogoutUser } from '../../api/users';
+import { useDispatch } from 'react-redux';
+import _ from 'lodash';
+import actions from '../../redux/actions';
 const labels = [
     {
         label: 'About',
@@ -51,31 +64,89 @@ export default function Header() {
 
     useEffect(() => {}, []);
 
-    const link = 'http://localhost:5000';
-    const [user, setUser] = useState({ login: false, name: '' });
-    const [loggedIn, setLoggedIn] = useState(false);
+    const toast = useToast();
+    const dispatch = useDispatch();
+
+    //const [u, setUser] = useState({ login: false, name: '' });
+    const [login, setLogin] = useState({ status: false, name: '' });
     useEffect(() => {
-        firebase.auth().onAuthStateChanged((user) => {
-            setLoggedIn(!!user);
+        firebase.auth().onAuthStateChanged(async (user) => {
+            //sending to the server login details here, only if user is available
+            // console.log('user is', user.displayName); // photoURL, email
+
+            if (user) {
+                const data = {
+                    first_name: user.displayName.split(' ')[0],
+                    last_name: user.displayName.split(' ')[1],
+                    display_pic: user.photoURL,
+                    email: user.email
+                };
+                setLogin({ status: true, name: data.first_name });
+                try {
+                    const res = await LoginUser(data);
+                    console.log('User details are', res.data);
+                    const payload = _.pick(res.data, [
+                        'first_name',
+                        'last_name',
+                        'email',
+                        'roles',
+                        'id',
+                        'display_pic'
+                    ]);
+                    dispatch({ type: actions.GET_USER_DETAILS, payload });
+                } catch (err) {
+                    console.log(err);
+                }
+                toast({
+                    title: 'Login Successful',
+                    description: 'Successfully Logged with Gmail.',
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true
+                });
+            } else {
+                try {
+                    const res = await LogoutUser();
+                    toast({
+                        title: 'Logged out successfully',
+                        status: 'success',
+                        duration: 3000,
+                        isClosable: true
+                    });
+                    setLogin({ status: false, name: '' });
+                } catch (error) {
+                    toast({
+                        title: 'Error loging out',
+                        status: 'error',
+                        duration: 3000,
+                        isClosable: true
+                    });
+                }
+            }
         });
     }, []);
 
     useEffect(() => {
-        axios
-            .get(`${link}/user`, { withCredentials: true })
-            .then((res) => {
-                if (res.data.user.first_name) {
-                    setUser({ login: true, name: res.data.user.first_name });
-                } else {
-                    console.log('Not found user');
-                }
-            })
-            .catch((err) => console.log(err));
+        // axios
+        //     .get(`${link}/user`, { withCredentials: true })
+        //     .then((res) => {
+        //         if (res.data.user.first_name) {
+        //             setUser({ login: true, name: res.data.user.first_name });
+        //         } else {
+        //             console.log('Not found user');
+        //         }
+        //     })
+        //     .catch((err) => console.log(err));
     }, []);
 
+    //just sends to firebase server
     const handleLogin = () => {
         cookieCutter.set('link', window.location.href, { expires: 360 });
         window.location.replace('http://localhost:5000/google');
+    };
+
+    const manageLogout = () => {
+        firebase.auth().signOut();
     };
 
     return (
@@ -124,11 +195,11 @@ export default function Header() {
                 <Icon as={FiMoreVertical} w={6} h={6} color="pink.500" />
 
                 {/* {!user.login?(<Button colorScheme="gray" color="pink.500" px="1.5rem" onClick={handleLogin}>Login</Button>) */}
-                {!loggedIn ? (
+                {!login.status ? (
                     <StyledLogin uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
                 ) : (
-                    <Button colorScheme="gray" color="pink.500" px="1.5rem">
-                        Hello, {user.name}
+                    <Button colorScheme="gray" color="pink.500" px="1.5rem" onClick={manageLogout}>
+                        Hello, {login.name}
                     </Button>
                 )}
             </HStack>
