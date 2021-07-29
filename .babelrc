@@ -1,0 +1,19 @@
+{
+    "presets": ["next/babel"],
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": ["."],
+                "alias": {
+                    "@Component": "./components/", // will connect to all utiliy related functions
+                    "@Api": "./api", // to all defined components
+                    "@Pages": "./pages", //  to all defined widget components
+                    "@Redux": "./redux",
+                    "@Styles": "./styles",
+                    "@List": "./Lists" //  redux related files like-  actions, reducers
+                }
+            }
+        ]
+    ]
+}

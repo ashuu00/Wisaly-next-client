@@ -5,11 +5,13 @@ import Dynamic from 'next/dynamic';
 import { Box, Center } from '@chakra-ui/layout';
 import styles from '../../styles/Blogs.module.scss';
 import { Button } from '@chakra-ui/button';
+import UploadImageBlog from '@Component/Blocks/UploadImageBlog';
 export default function editor() {
     const [data, setData] = useState('');
     const editorRef = useRef();
     const [activate, setActivate] = useState(false);
     const [editor, setEditor] = useState(<div>Hello</div>);
+    const [editor2, setEditor2] = useState(<div>Get editor here</div>);
     // letitem;
     let item: JSX.Element = <div>Hello</div>;
     useEffect(() => {
@@ -22,10 +24,32 @@ export default function editor() {
                     onInit={() => {
                         console.log('Editor has started');
                     }}
+                    onChange={handleEditorChanges}
                     config={{
                         ckfinder: {
                             uploadUrl: 'http://localhost:8080/api/v1/upload/singleimage'
-                        }
+                        },
+                        removePlugins: ['uploadImage']
+                    }}
+                />
+            );
+            setEditor2(
+                <CKEditor
+                    editor={ClassicEditor}
+                    onInit={() => {
+                        console.log('Editor has started');
+                    }}
+                    onChange={handleEditorChanges}
+                    config={{
+                        toolbar: [
+                            'bold',
+                            'italic',
+                            'link',
+                            'undo',
+                            'redo',
+                            'numberedList',
+                            'bulletedList'
+                        ]
                     }}
                 />
             );
@@ -40,7 +64,7 @@ export default function editor() {
         const currData = editor.getData();
         setData(currData);
         console.log('Data received', currData);
-        console.log('Data from event', event);
+        console.log('Data type from event', event);
     };
     if (typeof window !== undefined) {
     }
@@ -54,6 +78,7 @@ export default function editor() {
                     </Button>
                     <Button colorScheme="blue">Save as Draft</Button>
                 </Center>
+                {typeof window !== 'undefined' ? editor2 : ''}
             </Box>
         </Box>
     );
