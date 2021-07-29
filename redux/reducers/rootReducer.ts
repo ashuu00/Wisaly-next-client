@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
+import { blogReducer } from './blogReducer';
+import { modalReducer } from './modalReducers';
 import { userReducer } from './userReducer';
+
 export default combineReducers({
-    userReducer: userReducer
+    userState: userReducer,
+    blogState: blogReducer,
+    modalState: modalReducer
 });

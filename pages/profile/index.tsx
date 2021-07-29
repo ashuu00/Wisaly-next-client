@@ -1,14 +1,12 @@
-import { Box } from '@chakra-ui/layout';
-import { Flex } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
 import React from 'react';
-import UserMenu from '../../components/layout/UserMenu';
+import { useSelector } from 'react-redux';
 
 export default function index() {
-    return (
-        <Flex>
-            <Box w="30%" h="100vh" bg="red.300"></Box>
-        </Flex>
-    );
+    const router = useRouter();
+    //@ts-ignore
+    const userName = useSelector((state) => state.userState).username;
+    if (userName === '' || userName === undefined) router.push('/signup');
+    else router.push(`/profile/${userName}`);
+    return <div></div>;
 }
-
-index.Layout = UserMenu;

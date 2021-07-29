@@ -2,9 +2,8 @@
     padding: 10px;
 }
 
-.blogContent {
+.richTextContent {
     text-align: left;
-
     h1,
     h2,
     h3,
@@ -20,12 +19,20 @@
         line-height: 1;
     }
 
-    p {
+    p,
+    ul,
+    ol {
         margin: 1.5rem 0;
         font-size: 1.25rem;
         color: #4a5568;
         font-weight: medium;
         line-height: 1.4;
+    }
+
+    ul,
+    ol {
+        margin-left: 1.4rem;
+        line-height: 1.5;
     }
 
     img {

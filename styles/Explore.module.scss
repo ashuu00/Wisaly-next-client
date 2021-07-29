@@ -1,0 +1,24 @@
+.exploreCarousel {
+    .react-multi-carousel-dot-list {
+        bottom: 13px !important;
+    }
+}
+
+.exploreDots {
+    position: absolute;
+    bottom: 14px;
+    display: flex;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    margin: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    /* background-color: rgb(249, 227, 255);}*/
+}
+.exploreCarouselItems {
+    display: flex;
+    justify-content: center;
+}

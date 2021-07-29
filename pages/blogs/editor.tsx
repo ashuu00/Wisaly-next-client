@@ -5,6 +5,7 @@ import Dynamic from 'next/dynamic';
 import { Box, Center } from '@chakra-ui/layout';
 import styles from '../../styles/Blogs.module.scss';
 import { Button } from '@chakra-ui/button';
+import UploadImageBlog from '@Component/Blocks/UploadImageBlog';
 export default function editor() {
     const [data, setData] = useState('');
     const editorRef = useRef();
