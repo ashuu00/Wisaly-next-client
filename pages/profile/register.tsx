@@ -1,5 +1,5 @@
-import { getAllCategories } from '@Api/category';
-import { getUserDetails } from '@Api/users';
+import { getAllCategories } from 'axiosApi/category';
+import { getUserDetails } from 'axiosApi/users';
 import RegisterForm from '@Component/forms/RegisterForm';
 import getTokenFromContext from 'functions/getTokenFromContext';
 import titleCase from 'functions/titleCase';

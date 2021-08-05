@@ -17,7 +17,7 @@
         "paths": {
             //create alias in babel config also
             "@Component/*": ["components/*"],
-            "@Api/*": ["api/*"],
+            "@Api/*": ["axiosApi/*"],
             "@Page/*": ["pages/*"],
             "@Styles/*": ["/styles"],
             "@Test/*": ["test/*"],

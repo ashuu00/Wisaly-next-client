@@ -16,12 +16,12 @@ import UploadImageBlog from '@Component/Blocks/UploadImageBlog';
 import Select from 'react-select/creatable';
 import Feedback from '@Component/forms/Feedback';
 import { BlogUpload } from 'dto/blogs/blog';
-import { addCategory, getAllCategories } from '@Api/category';
-import { postBlog } from '@Api/blogs';
+import { addCategory, getAllCategories } from 'axiosApi/category';
+import { postBlog } from 'axiosApi/blogs';
 import titleCase from '../../functions/titleCase';
 import { useSelector } from 'react-redux';
 import { sendData } from 'next/dist/next-server/server/api-utils';
-import { addBlogTitleImage } from '@Api/media';
+import { addBlogTitleImage } from 'axiosApi/media';
 export default function create({ categories }) {
     const toast = useToast();
     const options = categories.map((item, _) => {

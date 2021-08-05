@@ -7,7 +7,7 @@ import CategoryList from '../../components/layout/UserMenu';
 import Header from '../../components/layout/Header';
 import getTokenFromContext from 'functions/getTokenFromContext';
 import cookieCutter from 'cookie-cutter';
-import { getAllCards } from '@Api/displayCard';
+import { getAllCards } from 'axiosApi/displayCard';
 import { Link } from '@chakra-ui/react';
 
 export default function index({ cards, token }) {

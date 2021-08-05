@@ -21,7 +21,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaDropbox, FaCamera } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addImages } from '@Api/media';
+import { addImages } from 'axiosApi/media';
 export default function UploadImage() {
     const [picUrl, setPicUrl] = useState('');
     const [reject, setReject] = useState(false);

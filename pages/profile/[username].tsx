@@ -17,7 +17,7 @@ import { FaBlog } from 'react-icons/fa';
 import styles from '@Styles/User.module.scss';
 import UserMenu from '../../components/layout/UserMenu';
 import { UserState } from '../../dto/user';
-import { getSuggested, getUserDetails } from '@Api/users';
+import { getSuggested, getUserDetails } from 'axiosApi/users';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 //import { useDispatch, useSelector } from 'react-redux';

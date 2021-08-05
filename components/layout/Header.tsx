@@ -27,11 +27,10 @@ import Link from 'next/link';
 import { FiMoreVertical, FiShoppingCart } from 'react-icons/fi';
 import { FaShoppingCart, FaChevronDown, FaSearch } from 'react-icons/fa';
 import axios from 'axios';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+
 import StyledLogin from 'react-firebaseui/StyledFirebaseAuth';
 import cookieCutter from 'cookie-cutter';
-import { getUserDetails, LoginUser, LogoutUser } from '@Api/users';
+import { getUserDetails, LoginUser, LogoutUser } from 'axiosApi/users';
 import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 import actions from '../../redux/actions';
@@ -67,25 +66,6 @@ const labels = [
     }
 ];
 
-if (!firebase.apps.length) {
-    firebase.initializeApp({
-        apiKey: 'AIzaSyBOSj-mUJz56Z30gS4XM0uJAQEdNsDPc6U',
-        authDomain: 'wisaly-ded1b.firebaseapp.com'
-    });
-} else {
-    firebase.app();
-}
-
-let uiConfig = {
-    signInFlow: 'popup',
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
-    callbacks: {
-        signInSuccessWithAuthResult: function (curr, redirect) {
-            return false;
-        }
-    }
-};
-
 export default function Header() {
     const toast = useToast();
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -94,7 +74,11 @@ export default function Header() {
     const router = useRouter();
     let jwtToken;
     //const [u, setUser] = useState({ login: false, name: '' });
-
+    let user = {
+        displayName: 'Ashu Anu',
+        photoURL: 'hello',
+        email: 'ashu25'
+    };
     const [login, setLogin] = useState('');
     const [username, setUsername] = useState('');
     useEffect(() => {
@@ -111,57 +95,54 @@ export default function Header() {
             return;
         }
 
-        firebase.auth().onAuthStateChanged(async (user) => {
-            if (user) {
-                console.log('logging', user);
-                const data = {
-                    first_name: user.displayName.split(' ')[0],
-                    last_name: user.displayName.split(' ')[1],
-                    display_pic: user.photoURL,
-                    email: user.email
-                };
-                console.log('login data is', data.first_name);
+        // if (user) {
+        //     console.log('logging', user);
+        //     const data = {
+        //         first_name: user.displayName.split(' ')[0],
+        //         last_name: user.displayName.split(' ')[1],
+        //         display_pic: user.photoURL,
+        //         email: user.email
+        //     };
+        //     console.log('login data is', data.first_name);
 
-                setLogin(data.first_name);
-                try {
-                    const res = await LoginUser(data);
-                    cookieCutter.set('activeUser', data.first_name + '-' + res.data.username, {
-                        expires: new Date(Date.now() + 1000 * 3600 * 24 * 7)
-                    });
-                    jwtToken = cookieCutter.get('jwt');
-                    dispatch({
-                        type: actions.GET_USER_DETAILS,
-                        payload: {
-                            jwtToken,
-                            first_name: data.first_name,
-                            last_name: data.last_name,
-                            id: res.data.id,
-                            email: data.email,
-                            display_pic: data.display_pic
-                        }
-                    });
-                    setUsername(res.data.username);
-                    console.log('sent token to redux', res.data.about);
-                    let shouldRegister = res.data.about ? false : true;
-                    if (shouldRegister) router.push('/profile/register');
-                    window.location.reload();
-                } catch (err) {
-                    console.log('error is', err);
-                    return;
-                }
-                toast({
-                    title: 'Login Successful',
-                    description: 'Successfully Logged with Gmail.',
-                    status: 'success',
-                    duration: 5000,
-                    isClosable: true
-                });
-            }
-        });
+        //     setLogin(data.first_name);
+        //     try {
+        //         const res = await LoginUser(data);
+        //         cookieCutter.set('activeUser', data.first_name + '-' + res.data.username, {
+        //             expires: new Date(Date.now() + 1000 * 3600 * 24 * 7)
+        //         });
+        //         jwtToken = cookieCutter.get('jwt');
+        //         dispatch({
+        //             type: actions.GET_USER_DETAILS,
+        //             payload: {
+        //                 jwtToken,
+        //                 first_name: data.first_name,
+        //                 last_name: data.last_name,
+        //                 id: res.data.id,
+        //                 email: data.email,
+        //                 display_pic: data.display_pic
+        //             }
+        //         });
+        //         setUsername(res.data.username);
+        //         console.log('sent token to redux', res.data.about);
+        //         let shouldRegister = res.data.about ? false : true;
+        //         if (shouldRegister) router.push('/profile/register');
+        //         window.location.reload();
+        //     } catch (err) {
+        //         console.log('error is', err);
+        //         return;
+        //     }
+        //     toast({
+        //         title: 'Login Successful',
+        //         description: 'Successfully Logged with Gmail.',
+        //         status: 'success',
+        //         duration: 5000,
+        //         isClosable: true
+        //     });
+        // }
     }, []);
 
     const manageLogout = async () => {
-        firebase.auth().signOut();
         try {
             setLogin('');
             await LogoutUser();
@@ -269,7 +250,9 @@ export default function Header() {
 
                         {/* {!user.login?(<Button colorScheme="gray" color="pink.500" px="1.5rem" onClick={handleLogin}>Login</Button>) */}
                         {login === '' ? (
-                            <StyledLogin uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+                            <Button colorScheme="gray" color="pink.500">
+                                Sign in
+                            </Button>
                         ) : (
                             <AccountButton />
                         )}

@@ -30,7 +30,7 @@ import styles from '@Styles/Explore.module.scss';
 import BlogCard from '@Component/Blogs/BlogCard';
 import getTokenFromContext from 'functions/getTokenFromContext';
 import cookieCutter from 'cookie-cutter';
-import { getCompleteCard } from '@Api/displayCard';
+import { getCompleteCard } from 'axiosApi/displayCard';
 import { getSingleCard } from 'dto/apisDto/displayCard';
 import Link from 'next/link';
 const responsive = {

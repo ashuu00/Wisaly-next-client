@@ -18,7 +18,7 @@ import {
 import { FaMoon, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
 import { useSelector, useDispatch } from 'react-redux';
-import { postFeedback } from '@Api/users';
+import { postFeedback } from 'axiosApi/users';
 export default function Feedback() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();

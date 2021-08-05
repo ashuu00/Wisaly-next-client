@@ -18,7 +18,7 @@ import { Form, Formik, Field } from 'formik';
 import { values, debounce } from 'lodash';
 import MultiSelect from 'react-select';
 import * as Yup from 'yup';
-import { registerUser } from '@Api/users';
+import { registerUser } from 'axiosApi/users';
 import { useRouter } from 'next/dist/client/router';
 const ChakraInput = ({
     name,

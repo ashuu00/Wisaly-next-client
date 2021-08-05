@@ -5,7 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 //import Header from '../../components/layout/Header';
 import styles from '../../styles/Blogs.module.scss';
 import Link from 'next/link';
-import { getAllBlogs } from '@Api/blogs';
+import { getAllBlogs } from 'axiosApi/blogs';
 import { HStack } from '@chakra-ui/react';
 import BlogCard from '@Component/Blogs/BlogCard';
 import getTokenFromContext from 'functions/getTokenFromContext';

@@ -1,4 +1,4 @@
-import { getCompleteBlog } from '@Api/blogs';
+import { getCompleteBlog } from 'axiosApi/blogs';
 import {
     Flex,
     Text,

@@ -1,5 +1,5 @@
-import { addCommentCard } from '@Api/displayCard';
-import { getBasicDetails, getUserDetails } from '@Api/users';
+import { addCommentCard } from 'axiosApi/displayCard';
+import { getBasicDetails, getUserDetails } from 'axiosApi/users';
 import { Box, Circle, Flex, VStack, Text, HStack, Input, useToast } from '@chakra-ui/react';
 import { addComment } from 'dto/apisDto/comments';
 import React, { useState } from 'react';
