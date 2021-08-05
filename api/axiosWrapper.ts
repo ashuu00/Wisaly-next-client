@@ -1,8 +1,8 @@
 import axios from 'axios';
 import cookieCutter from 'cookie-cutter';
 
-const test = true;
-const prefix = test ? 'http://localhost:8080/api/v1' : 'https://www.wisaly.com/api/v1';
+const test = false;
+const prefix = test ? 'http://localhost:8080/api/v1' : 'http://13.233.73.34/api/v1';
 
 export const axiosGet = async (url: string, token?: String, options?: any) => {
     console.log('method called');
