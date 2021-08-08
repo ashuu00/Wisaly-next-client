@@ -94,6 +94,93 @@ export default function Header() {
 
     const [login, setLogin] = useState('');
     const [username, setUsername] = useState('');
+    useEffect(() => {
+        let nameToken = cookieCutter.get('activeUser');
+        jwtToken = cookieCutter.get('jwt');
+        //check for jwt, so that we remove unecessary hits to server
+        if (jwtToken) {
+            console.log('jwt found', jwtToken);
+            dispatch({ type: actions.GET_USER_TOKEN, jwtToken });
+            dispatch({ type: actions.GET_USER_NAME, payload: nameToken.split('-')[1] });
+            setLogin(cookieCutter.get('activeUser').split('-')[0]);
+            setUsername(cookieCutter.get('activeUser').split('-')[1]);
+
+            return;
+        }
+
+        firebase.auth().onAuthStateChanged(async (user) => {
+            if (user) {
+                console.log('logging', user);
+                const data = {
+                    first_name: user.displayName.split(' ')[0],
+                    last_name: user.displayName.split(' ')[1],
+                    display_pic: user.photoURL,
+                    email: user.email
+                };
+                console.log('login data is', data.first_name);
+
+                setLogin(data.first_name);
+                try {
+                    const res = await LoginUser(data);
+                    cookieCutter.set('activeUser', data.first_name + '-' + res.data.username, {
+                        expires: new Date(Date.now() + 1000 * 3600 * 24 * 7)
+                    });
+                    jwtToken = cookieCutter.get('jwt');
+                    dispatch({
+                        type: actions.GET_USER_DETAILS,
+                        payload: {
+                            jwtToken,
+                            first_name: data.first_name,
+                            last_name: data.last_name,
+                            id: res.data.id,
+                            email: data.email,
+                            display_pic: data.display_pic
+                        }
+                    });
+                    setUsername(res.data.username);
+                    console.log('sent token to redux', res.data.about);
+                    let shouldRegister = res.data.about ? false : true;
+                    if (shouldRegister) router.push('/profile/register');
+                    window.location.reload();
+                } catch (err) {
+                    console.log('error is', err);
+                    return;
+                }
+                toast({
+                    title: 'Login Successful',
+                    description: 'Successfully Logged with Gmail.',
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true
+                });
+            }
+        });
+    }, []);
+
+    const manageLogout = async () => {
+        firebase.auth().signOut();
+        try {
+            setLogin('');
+            await LogoutUser();
+            cookieCutter.set('jwt', 'true', { expires: new Date(0) });
+            toast({
+                title: 'Logged out successfully',
+                status: 'success',
+                duration: 3000,
+                isClosable: true
+            });
+            cookieCutter.set('activeUser', 'true', { expires: new Date(0) });
+            window.location.reload();
+        } catch (error) {
+            toast({
+                title: 'Error loging out',
+                description: 'some error',
+                status: 'error',
+                duration: 3000,
+                isClosable: true
+            });
+        }
+    };
 
     const AccountButton = () => (
         <Menu>
@@ -104,7 +191,7 @@ export default function Header() {
                 <Link href={`/profile/${username}`}>
                     <MenuItem>Profile</MenuItem>
                 </Link>
-                <MenuItem>Logout</MenuItem>
+                <MenuItem onClick={manageLogout}>Logout</MenuItem>
                 <MenuItem>Mark as Draft</MenuItem>
             </MenuList>
         </Menu>
@@ -123,9 +210,11 @@ export default function Header() {
                     px="2rem"
                     borderBottom="2px solid"
                     borderBottomColor="teal.50">
-                    <HStack spacing={['0.25rem', '1rem', '1.5rem', '2rem']} h="80px" align="center">
+                    <HStack
+                        spacing={['0.25rem', '1rem', '1.5rem', '2.5rem']}
+                        h="80px"
+                        align="center">
                         <Img src="/homepage/WisalyLatestLogo.jpg" h="80%" alt="Wisaly Logo" />
-                        {/** All the links would be here */}
                         {labels.map((val) => (
                             <Link key={val.label} href={val.link}>
                                 <ChakraLink
@@ -144,7 +233,7 @@ export default function Header() {
                         spacing="2.5rem"
                         h="80px"
                         fontSize="xl"
-                        w="auto"
+                        w="100%"
                         align="center"
                         justify="flex-end">
                         <Icon
@@ -177,10 +266,7 @@ export default function Header() {
 
                         {/* {!user.login?(<Button colorScheme="gray" color="pink.500" px="1.5rem" onClick={handleLogin}>Login</Button>) */}
                         {login === '' ? (
-                            <HStack spacing={2}>
-                                <Button colorScheme="pink">Sign in</Button>
-                                <Button colorScheme="pink">Sign Up</Button>
-                            </HStack>
+                            <StyledLogin uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
                         ) : (
                             <AccountButton />
                         )}
