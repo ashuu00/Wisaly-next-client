@@ -200,6 +200,8 @@ card_link.getInitialProps = async (ctx) => {
     if (token === '-1') {
         token = undefined;
     }
+    console.log('Query got is', ctx.query.card_link);
+
     const data = (await getCompleteCard(ctx.query.card_link, token)).data;
     console.log(data);
 
