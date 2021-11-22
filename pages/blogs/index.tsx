@@ -120,8 +120,8 @@ export default function index({ data }) {
 }
 
 index.getInitialProps = async (ctx) => {
-    const token = ctx.req ? getTokenFromContext(ctx, 'jwt') : cookieCutter.get('jwt');
-    if (token === '-1') return undefined;
+    let token = ctx.req ? getTokenFromContext(ctx, 'jwt') : cookieCutter.get('jwt');
+    if (token === '-1') token = undefined;
     const data = (await getAllBlogs(token)).data;
     console.log('blogs are', data);
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cookieCutter from 'cookie-cutter';
 
-const test = false;
+const test = true;
 const prefix = test ? 'http://localhost:8080/api/v1' : 'https://api.wisaly.com/api/v1';
 
 export const axiosGet = async (url: string, token?: String, options?: any) => {

@@ -31,11 +31,11 @@ export default function Home() {
                 </Box>
                 <Box w="50%">
                     <Heading as="h2" size="2xl" color="teal.600" mb="3rem">
-                        Software solution for business and customer relationship
+                        Website for redefining the way you shop online.
                     </Heading>
                     <Heading as="h4" size="md" color="teal.500" lineHeight="1.3">
-                        We help businesses by giving them a platform to share quality content such
-                        as blogs, designs and testimonials to target their interested customers.
+                        We help designers and cool products to be displayed to the customers in a
+                        engaging fashion.
                     </Heading>
                 </Box>
             </Box>
@@ -52,12 +52,10 @@ export default function Home() {
                 </Box>
                 <Box w="50%">
                     <Heading as="h2" size="2xl" color="teal.600" mb="3rem">
-                        Let our Machine Learning model help you
+                        Explore New Ideas
                     </Heading>
                     <Heading as="h4" size="md" color="teal.500" lineHeight="1.3">
-                        Our machine learning model would help to find the you the targeted audience,
-                        and our analytics engine would help to find your target audience that have
-                        high chances of buying your product.
+                        Looking for new home decor items, gifts for babies, we have it all covered.
                     </Heading>
                 </Box>
             </Box>

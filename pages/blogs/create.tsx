@@ -162,10 +162,10 @@ export default function create({ categories }) {
 }
 
 create.getInitialProps = async (ctx) => {
-    const categories = await getAllCategories();
-    console.log(categories.data);
+    //  const categories = await getAllCategories();
+    //  console.log(categories.data);
 
     return {
-        categories: categories.data
+        categories: ['hi', 'there']
     };
 };

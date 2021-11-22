@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        .container {
+            width: 600px;
+            height: 600px;
+            background-color: green;
+            display: flex;
+        }
+        .myItem {
+            width: 200px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+
+            background-color: red;
+        }
+        .child {
+            width: 100%;
+            height: 100px;
+        }
+        .child2 {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div class="myItem">
+                <div class="child" style="background-color: blue"></div>
+                <div class="child" style="background-color: yellow"></div>
+                <div class="child" style="background-color: blue"></div>
+                <div class="child" style="background-color: green"></div>
+                <div class="child" style="background-color: blue"></div>
+            </div>
+            <div class="myItem" style="background-color: pink">
+                <div class="child2" style="background-color: orange"></div>
+                <div class="child2" style="background-color: purple"></div>
+            </div>
+            <div class="myItem" style="background-color: yellow"></div>
+        </div>
+    </body>
+</html>
